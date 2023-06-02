@@ -1,0 +1,15 @@
+{% extends 'registration/create.html' %}
+{% block formcontent %}
+<div class="container mt-5">
+    <form action="" method="GET" class="d-inline" novalidate>
+        {% csrf_token %}
+        {% for form in FORM %}
+        <div class="form-group">
+            {{form.label_tag}}  <br>
+            {{form}} {{form.errors|striptags}}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Done">
+    </form>
+</div>
+{% endblock formcontent %}

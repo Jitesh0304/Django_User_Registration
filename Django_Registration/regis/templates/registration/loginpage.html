@@ -1,0 +1,33 @@
+{% extends 'registration/create.html' %}
+
+{% load static %}
+{% block formcontent %}
+<div class="container mt-5">
+  <form action="" method="POST" class="d-inline" novalidate>
+      {% csrf_token %}
+      {% for form in FORM %}
+      <div class="form-group">
+          {{form.label_tag}}  <br>
+          {{form}} {{form.errors|striptags}}
+      </div>
+      {% endfor %}
+      <input type="submit" value="Sign Up">
+  </form>
+
+  {% if messages %}
+      {% for msg in messages %}
+          <small {% if msg.tags %} class='{{msg.tags}}' {% endif %}> <h4>{{msg}}</h4></small>
+      {% endfor %}
+  {% endif %}
+
+  {% comment %} {% if FORM.errors %}
+  <div class="alert alert-danger">
+    {% for field in FORM %}
+      {% for error in field.errors %}
+        <strong>{{ error }}</strong>
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endif %} {% endcomment %}
+</div>
+{% endblock formcontent %}
